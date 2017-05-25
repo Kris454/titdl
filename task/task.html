@@ -1,0 +1,17 @@
+
+<div ng-controller="TaskCtrl as taskCtrl">
+    <form ng-submit="taskCtrl.addTodo()">
+        <label for="taskInput">Zadanie:</label>
+        <input type="text" name="taskInput" ng-model="taskCtrl.todoText"
+        ng-keydown="taskCtrl.error = ''"/>
+        <span ng-if="taskCtrl.erorr !== '' ">{{taskCtrl.error}}</span>
+        <input type="submit" value="Dodaj"/>
+    </form>
+    <button ng-click="taskCtrl.deleteTodo()">Usuń zaznaczone</button> 
+    <ul>
+    <li ng-repeat="todo in taskCtrl.todos track by $index">
+        <input type="checkbox" ng-model="todo.done"  ng-change="taskCtrl.saveToLocalStorage()">
+        <span ng-class="{done: todo.done}">{{todo.text}}</span>
+        </li>
+</ul>
+</div>
